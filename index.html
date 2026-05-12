@@ -18,6 +18,8 @@
       --hover-background: #0000ee;
       --hover-text: #ffffff;
       --font: "OCR A Std", "OCR A Extended", "OCR-A", "Letter Gothic Std", "Share Tech Mono", "IBM Plex Mono", "Cascadia Mono", "Andale Mono", "Monaco", "Lucida Console", "DejaVu Sans Mono", "Noto Sans Mono", ui-monospace, monospace;
+      --mobile-side-padding: 16px;
+      --mobile-ascii-side-padding: 28px;
     }
 
     html,
@@ -111,6 +113,15 @@
       user-select: text;
     }
 
+    .ascii-art-mobile {
+      display: none;
+    }
+
+    .ascii-art-desktop {
+      display: block;
+    }
+
+
     .ascii-art a {
       color: var(--link);
       background: transparent;
@@ -144,7 +155,7 @@
       main {
         width: 100%;
         min-height: 100svh;
-        padding: 178px 12px 32px 12px;
+        padding: 178px var(--mobile-side-padding) 32px var(--mobile-side-padding);
         overflow-x: hidden;
       }
 
@@ -154,6 +165,18 @@
         line-height: 0.94;
         letter-spacing: -0.075em;
       }
+
+      .site-banner {
+        display: inline-block;
+        white-space: nowrap;
+      }
+
+
+      .site-banner {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
 
       .work-scroll {
         position: fixed;
@@ -195,11 +218,33 @@
         line-height: 1.02;
         letter-spacing: 0;
       }
+
+      .ascii-art-desktop {
+        display: none;
+      }
+
+      .ascii-art-mobile {
+        display: block;
+      }
+
+      .ascii-art-mobile {
+        width: max-content;
+        max-width: none;
+        font-size: clamp(8.6px, 3.35vw, 14px);
+        line-height: 1.02;
+        letter-spacing: 0.045em;
+        transform-origin: top left;
+        margin-left: var(--mobile-ascii-side-padding);
+        margin-right: var(--mobile-ascii-side-padding);
+      }
+
+
+
     }
 
     @media (max-width: 520px) {
       main {
-        padding: 158px 8px 28px 8px;
+        padding: 158px var(--mobile-side-padding) 28px var(--mobile-side-padding);
       }
 
       .work-scroll {
@@ -340,7 +385,7 @@
       </div>
     </aside>
     <h1 class="site-banner">JARVIS KEARNS GRAPHIC DESIGN WEBSITE</h1>
-    <pre class="ascii-art">        Work:                  +<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">Balance of Power:</a>....@.....@@@@@@@@@@@.#                  <a class="utility-link" href="about.html">about</a>           
+    <pre class="ascii-art ascii-art-desktop">        Work:                  +<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">Balance of Power:</a>....@.....@@@@@@@@@@@.#                  <a class="utility-link" href="about.html">about</a>           
                          ++++++#.&amp;*.**.#<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">Videogame Propaganda 1980-2000</a>                          
                       #+%+%%%++%@.&amp;&amp;.            .@.&amp;*...*....@.#*@@@.#%                        
                   ++#*#%%%#%+                           %#<a aria-label="Musica Obscura issue 001" data-project="musica" href="musica-obscura-issue-001.html">Musica Obscura</a>*#                        
@@ -367,6 +412,70 @@
         ...<a aria-label="assorted video and audio" data-project="media" href="assorted-video-audio.html">video &amp; audio</a>%%.@.                             .&amp;*#++#%##**.&amp;%+#+                   
           .*.....$@..@@@...*                                   ++++++++++%+++                     
             .$.@.@@@@.**                                                                          </pre>
+    <pre class="ascii-art ascii-art-mobile">    ....%.....%*          <a class="utility-link" href="about.html">about</a>
+   #@@@@%@...*#*#. *#
+   .@@@@%@...##..@.%#         <a class="utility-link" href="mailto:hello@example.com">contact</a>
+  ..@@@@%@...##..@.%%     #
+  .@@@@@%@....#@..@..     #
+ *.&@@@@.@....#.....      #
+..@&@@.@.@$.$.#@&..@*
+....@@*@@@.@..+  ..$.
+@...<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">Balance</a>.$.+   *...
+<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">of Power:</a>#....+*   @.*+
+@$ .<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">Videogame</a>.%*   .**+
+@@<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">Propaganda</a>..%.    *.%+
+@.&<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">1980-2000</a>$.%.    .#++
+@.&#@@.@%@....%*    ##%#
+.@.#@@.@%@@.@.+     # %*
+*@*+@@.@%..@*.+     . .%+
+ .%#@@.@%.#.%.+     & .%%
+ .%+@<a aria-label="Musica Obscura issue 001" data-project="musica" href="musica-obscura-issue-001.html">Musica</a>#+.+     .  %++
+ ..<a aria-label="Musica Obscura issue 001" data-project="musica" href="musica-obscura-issue-001.html">Obscura</a>** *+     .  #%+
+ *@#++++**<a aria-label="Musica Obscura issue 001" data-project="musica" href="musica-obscura-issue-001.html">issue 001</a> .  %%+
+    ++#%.#++        *   ++
+    #####++         *   +++
+     .+&#+         *.   @..
+     <a aria-label="semantic web collager" data-project="semantic" href="semantic-web-collager.html">semantic</a>      ..   .&.
+                 <a aria-label="semantic web collager" data-project="semantic" href="semantic-web-collager.html">web</a>    &*.
+          <a aria-label="semantic web collager" data-project="semantic" href="semantic-web-collager.html">collager</a> .    &.#
+                        .**
+                *.*      .*
+                &@.      #*
+            %  .@@*      @.
+        <a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">CGIS</a>%  ..$       ..
+          <a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">commons</a>        @.
+      <a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">geographic</a>#        @.
+          <a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">image-</a>%        @.
+          <a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">search</a>         ..
+          @@*@..         ..
+         .@@+@.#         @.
+       *$..+ *          @..
+       #...  +          .*.
+      @.@#              *&.
+<a aria-label="assorted video and audio" data-project="media" href="assorted-video-audio.html">assorted</a>+               ...
+   @ <a aria-label="assorted video and audio" data-project="media" href="assorted-video-audio.html">video &amp;</a>            ...
+  <a aria-label="assorted video and audio" data-project="media" href="assorted-video-audio.html">audio</a>#               %.&.
+   ...*               *#*..
+  &..%*               &&.@@
+  **@#                *..@@
+  +%.                %#@@.@
+ ++&#                *%...@
+ +%++               +*#.*.@
+ +#%%               +#%.@.@
+ +*#+               %%%.@%@
+ +*#+               #%#..+.
+ +&%%.              **%.%
+ +%%#*+ % + *        *%*
+ +#%%$.*%%++.        +
+ ++%%.@*++##.
+    @@#%.&&*.*#
+    @@#..*...**+
+    .@%...%.%*##
+    ..#.*#+%.*#.
+     #%%+++% ..#
+     +#+++ + #*@
+       +     .*
+             ++</pre>
   </main>
   <script>
     // --- Infinite image rail ---
@@ -545,6 +654,75 @@
         measureRail();
         requestAnimationFrame(animateRail);
       });
+    })();
+
+
+    // --- Size mobile title to screen width ---
+    (function () {
+      const siteTitle = document.querySelector('.site-banner');
+      if (!siteTitle) return;
+
+      function sizeMobileTitle() {
+        if (!window.matchMedia('(max-width: 900px)').matches) {
+          siteTitle.style.fontSize = '';
+          return;
+        }
+
+        const styles = getComputedStyle(document.documentElement);
+        const contentPadding = parseFloat(styles.getPropertyValue('--mobile-side-padding')) || 16;
+        const availableWidth = document.documentElement.clientWidth - (contentPadding * 2);
+
+        const maxSize = 44;
+        const minSize = 14;
+
+        siteTitle.style.fontSize = `${maxSize}px`;
+
+        const naturalWidth = siteTitle.scrollWidth;
+        if (!naturalWidth) return;
+
+        const fittedSize = Math.max(minSize, Math.min(maxSize, maxSize * (availableWidth / naturalWidth)));
+        siteTitle.style.fontSize = `${fittedSize}px`;
+      }
+
+      window.addEventListener('resize', sizeMobileTitle);
+      window.addEventListener('orientationchange', sizeMobileTitle);
+      window.addEventListener('load', sizeMobileTitle);
+      setTimeout(sizeMobileTitle, 100);
+    })();
+
+    // --- Fit mobile ASCII to screen width ---
+    (function () {
+      const mobileAscii = document.querySelector('.ascii-art-mobile');
+      if (!mobileAscii) return;
+
+      function fitMobileAscii() {
+        if (!window.matchMedia('(max-width: 900px)').matches) {
+          mobileAscii.style.transform = '';
+          return;
+        }
+
+        mobileAscii.style.transform = '';
+        mobileAscii.style.marginBottom = '';
+
+        const styles = getComputedStyle(document.documentElement);
+        const contentPadding = parseFloat(styles.getPropertyValue('--mobile-side-padding')) || 16;
+        const asciiPadding = parseFloat(styles.getPropertyValue('--mobile-ascii-side-padding')) || 28;
+        const availableWidth = document.documentElement.clientWidth - (contentPadding * 2) - (asciiPadding * 2);
+        const naturalWidth = mobileAscii.scrollWidth;
+
+        if (!naturalWidth) return;
+
+        const scale = Math.max(0.1, availableWidth / naturalWidth);
+        const naturalHeight = mobileAscii.offsetHeight;
+
+        mobileAscii.style.transform = `scale(${scale})`;
+        mobileAscii.style.marginBottom = `${naturalHeight * (scale - 1)}px`;
+      }
+
+      window.addEventListener('resize', fitMobileAscii);
+      window.addEventListener('orientationchange', fitMobileAscii);
+      window.addEventListener('load', fitMobileAscii);
+      setTimeout(fitMobileAscii, 100);
     })();
 
     // --- Project link group hover ---
