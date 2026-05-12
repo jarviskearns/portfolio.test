@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #ffffff;
+      --text: #000000;
+      --link: #0000ee;
+      --hover-background: #0000ee;
+      --hover-text: #ffffff;
+      --font: "OCR A Std", "OCR A Extended", "OCR-A", "Letter Gothic Std", "Share Tech Mono", "IBM Plex Mono", "Cascadia Mono", "Andale Mono", "Monaco", "Lucida Console", "DejaVu Sans Mono", "Noto Sans Mono", ui-monospace, monospace;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--background);
+      color: var(--text);
+      font-family: var(--font);
+      font-variant-ligatures: none;
+      text-rendering: geometricPrecision;
+      font-synthesis: none;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      min-height: 100vh;
+      display: block;
+      padding: 48px 32px 48px 310px;
+    }
+
+    .site-banner {
+      font-family: "Helvetica Neue", "Helvetica", "Arial Narrow", Arial, sans-serif;
+      font-size: clamp(24px, 4vw, 56px);
+      font-weight: normal;
+      letter-spacing: -0.06em;
+      line-height: 1;
+      margin: 0 0 0 0;
+      color: var(--text);
+
+    }
+
+    .work-scroll {
+      position: fixed;
+      left: 32px;
+      top: 48px;
+      bottom: 48px;
+      width: 250px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      background: var(--background);
+    }
+
+    .work-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .work-track {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      will-change: scroll-position;
+    }
+
+    .work-set {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .work-track img {
+      display: block;
+      width: 100%;
+      max-height: 280px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .ascii-art {
+      margin: 10vh 0 0 0;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: clamp(9px, 1.1vw, 15px);
+      line-height: 1.05;
+      letter-spacing: 0.015em;
+      white-space: pre;
+      user-select: text;
+    }
+
+    .ascii-art a {
+      color: var(--link);
+      background: transparent;
+      text-decoration: none;
+      border: 0;
+    }
+
+    .utility-link {
+      letter-spacing: 0.08em;
+    }
+
+    .ascii-art a:hover,
+    .ascii-art a:focus-visible,
+    .ascii-art a.is-active {
+      background: var(--hover-background);
+      color: var(--hover-text);
+      outline: none;
+      text-decoration: none;
+    }
+
+    .ascii-art .char-highlight {
+      background: #ffe600;
+      color: #000;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      main {
+        width: 100%;
+        min-height: 100svh;
+        padding: 178px 12px 32px 12px;
+        overflow-x: hidden;
+      }
+
+      .site-banner {
+        max-width: 100%;
+        font-size: clamp(20px, 8vw, 36px);
+        line-height: 0.94;
+        letter-spacing: -0.075em;
+      }
+
+      .work-scroll {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: auto;
+        z-index: 2;
+        width: 100%;
+        height: 140px;
+        padding: 18px 12px 12px 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: var(--background);
+        touch-action: pan-x;
+      }
+
+      .work-track,
+      .work-set {
+        flex-direction: row;
+        width: max-content;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .work-track img {
+        flex: 0 0 auto;
+        width: auto;
+        height: 104px;
+        max-height: 104px;
+        object-fit: contain;
+      }
+
+      .ascii-art {
+        display: inline-block;
+        max-width: 100%;
+        margin-top: 8vh;
+        font-size: clamp(5.4px, 1.42vw, 7.6px);
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      main {
+        padding: 158px 8px 28px 8px;
+      }
+
+      .work-scroll {
+        height: 122px;
+        padding: 14px 8px 10px 8px;
+      }
+
+      .work-track,
+      .work-set {
+        gap: 10px;
+      }
+
+      .work-track img {
+        height: 92px;
+        max-height: 92px;
+      }
+
+      .site-banner {
+        font-size: clamp(18px, 8.7vw, 32px);
+      }
+
+      .ascii-art {
+        margin-top: 6vh;
+        font-size: clamp(4.8px, 1.33vw, 6.7px);
+        line-height: 1;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .ascii-art {
+        font-size: 4.55px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <main>
+    <aside aria-label="Selected work images" class="work-scroll">
+      <div class="work-track">
+        <img alt="20260511 180214" loading="lazy" src="images/20260511_180214.jpg" />
+        <img alt="20260511 180325" loading="lazy" src="images/20260511_180325.jpg" />
+        <img alt="20260511 180816" loading="lazy" src="images/20260511_180816.jpg" />
+        <img alt="20260511 181455" loading="lazy" src="images/20260511_181455.jpg" />
+        <img alt="20260511 182727" loading="lazy" src="images/20260511_182727.jpg" />
+        <img alt="20260511 183128" loading="lazy" src="images/20260511_183128.jpg" />
+        <img alt="20260511 183338" loading="lazy" src="images/20260511_183338.jpg" />
+        <img alt="20260511 184156" loading="lazy" src="images/20260511_184156.jpg" />
+        <img alt="20260511 184448" loading="lazy" src="images/20260511_184448.jpg" />
+        <img alt="20260511 184527" loading="lazy" src="images/20260511_184527.jpg" />
+        <img alt="Screenshot 2026 05 12 at 00.45.11" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.45.11.png" />
+        <img alt="Screenshot 2026 05 12 at 00.45.37" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.45.37.png" />
+        <img alt="Screenshot 2026 05 12 at 00.46.51" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.46.51.png" />
+        <img alt="Screenshot 2026 05 12 at 00.47.30" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.47.30.png" />
+        <img alt="Screenshot 2026 05 12 at 00.48.13" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.48.13.png" />
+        <img alt="Screenshot 2026 05 12 at 00.48.51" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.48.51.png" />
+        <img alt="Screenshot 2026 05 12 at 00.49.35" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.49.35.png" />
+        <img alt="Screenshot 2026 05 12 at 01.06.55" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 01.06.55.png" />
+        <img alt="commons collage 1000x1000 transparent (1)" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (1).png" />
+        <img alt="commons collage 1000x1000 transparent (2)" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (2).png" />
+        <img alt="commons collage 1000x1000 transparent (3)" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (3).png" />
+        <img alt="commons collage 1000x1000 transparent (4)" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (4).png" />
+        <img alt="commons collage 1000x1000 transparent (5)" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (5).png" />
+        <img alt="commons collage 1000x1000 transparent" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent.png" />
+        <img alt="commons collage 1200x800 transparent (1)" loading="lazy"
+          src="images/commons-collage-1200x800-transparent (1).png" />
+        <img alt="commons collage 1200x800 transparent (2)" loading="lazy"
+          src="images/commons-collage-1200x800-transparent (2).png" />
+        <img alt="commons collage 800x1200 transparent (1)" loading="lazy"
+          src="images/commons-collage-800x1200-transparent (1).png" />
+        <img alt="commons collage 800x1200 transparent (2)" loading="lazy"
+          src="images/commons-collage-800x1200-transparent (2).png" />
+        <img alt="commons collage 800x1200 transparent (3)" loading="lazy"
+          src="images/commons-collage-800x1200-transparent (3).png" />
+        <img alt="20260511 180214" aria-hidden="true" loading="lazy" src="images/20260511_180214.jpg" />
+        <img alt="20260511 180325" aria-hidden="true" loading="lazy" src="images/20260511_180325.jpg" />
+        <img alt="20260511 180816" aria-hidden="true" loading="lazy" src="images/20260511_180816.jpg" />
+        <img alt="20260511 181455" aria-hidden="true" loading="lazy" src="images/20260511_181455.jpg" />
+        <img alt="20260511 182727" aria-hidden="true" loading="lazy" src="images/20260511_182727.jpg" />
+        <img alt="20260511 183128" aria-hidden="true" loading="lazy" src="images/20260511_183128.jpg" />
+        <img alt="20260511 183338" aria-hidden="true" loading="lazy" src="images/20260511_183338.jpg" />
+        <img alt="20260511 184156" aria-hidden="true" loading="lazy" src="images/20260511_184156.jpg" />
+        <img alt="20260511 184448" aria-hidden="true" loading="lazy" src="images/20260511_184448.jpg" />
+        <img alt="20260511 184527" aria-hidden="true" loading="lazy" src="images/20260511_184527.jpg" />
+        <img alt="Screenshot 2026 05 12 at 00.45.11" aria-hidden="true" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.45.11.png" />
+        <img alt="Screenshot 2026 05 12 at 00.45.37" aria-hidden="true" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.45.37.png" />
+        <img alt="Screenshot 2026 05 12 at 00.46.51" aria-hidden="true" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.46.51.png" />
+        <img alt="Screenshot 2026 05 12 at 00.47.30" aria-hidden="true" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.47.30.png" />
+        <img alt="Screenshot 2026 05 12 at 00.48.13" aria-hidden="true" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.48.13.png" />
+        <img alt="Screenshot 2026 05 12 at 00.48.51" aria-hidden="true" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.48.51.png" />
+        <img alt="Screenshot 2026 05 12 at 00.49.35" aria-hidden="true" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 00.49.35.png" />
+        <img alt="Screenshot 2026 05 12 at 01.06.55" aria-hidden="true" loading="lazy"
+          src="images/Screenshot 2026-05-12 at 01.06.55.png" />
+        <img alt="commons collage 1000x1000 transparent (1)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (1).png" />
+        <img alt="commons collage 1000x1000 transparent (2)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (2).png" />
+        <img alt="commons collage 1000x1000 transparent (3)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (3).png" />
+        <img alt="commons collage 1000x1000 transparent (4)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (4).png" />
+        <img alt="commons collage 1000x1000 transparent (5)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent (5).png" />
+        <img alt="commons collage 1000x1000 transparent" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-1000x1000-transparent.png" />
+        <img alt="commons collage 1200x800 transparent (1)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-1200x800-transparent (1).png" />
+        <img alt="commons collage 1200x800 transparent (2)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-1200x800-transparent (2).png" />
+        <img alt="commons collage 800x1200 transparent (1)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-800x1200-transparent (1).png" />
+        <img alt="commons collage 800x1200 transparent (2)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-800x1200-transparent (2).png" />
+        <img alt="commons collage 800x1200 transparent (3)" aria-hidden="true" loading="lazy"
+          src="images/commons-collage-800x1200-transparent (3).png" />
+      </div>
+    </aside>
+    <h1 class="site-banner">JARVIS KEARNS GRAPHIC DESIGN WEBSITE</h1>
+    <pre class="ascii-art">        Work:                  +<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">Balance of Power:</a>....@.....@@@@@@@@@@@.#                  <a class="utility-link" href="about.html">about</a>           
+                         ++++++#.&amp;*.**.#<a aria-label="Balance of Power: Videogame Propaganda 1980-2000" data-project="balance" href="balance-of-power-videogame-propaganda-1980-2000.html">Videogame Propaganda 1980-2000</a>                          
+                      #+%+%%%++%@.&amp;&amp;.            .@.&amp;*...*....@.#*@@@.#%                        
+                  ++#*#%%%#%+                           %#<a aria-label="Musica Obscura issue 001" data-project="musica" href="musica-obscura-issue-001.html">Musica Obscura</a>*#                        
+                ++%+%%*..                                *<a aria-label="Musica Obscura issue 001" data-project="musica" href="musica-obscura-issue-001.html">issue 001</a>%%#*%%+                         <a class="utility-link" href="mailto:hello@example.com">contact</a>       
+               .**.##                                         %*#*#%%%***%+                        
+      ##%.  **...**.##..&amp;...***+..                              ++++%#.*                          
+      *%%.*.@.$.@.              *.@.                                                              
+       ..@@....*                     #*.&amp;*                                                        
+      .@@.@..$.                       .@.@$                                                      
+      #.....&amp;                         *&amp;.@.*#%                                                   
+     **..@@.@.  **..*                    ..#%@@.#                             ++#.*#@@             
+     %##<a aria-label="semantic web collager" data-project="semantic" href="semantic-web-collager.html">semantic</a>+%%%%++++++                +#@....                           #*###*.*%*+           
+     .*#<a aria-label="semantic web collager" data-project="semantic" href="semantic-web-collager.html">web collager</a>......*..               .@.@@.*+                         **.***.#%.+           
+     .....$.$..$.$.$.@.*%+               %%**.**+                       *......*%.+           
+     ........$@.......$@.#*.#+               $.@@@+                       +#.*...%+%+           
+     .....$.$@.$.....@..#**#+++             .@@@@@..                    +%+#.&amp;..%+++           
+     .@@@@@@@@@##.@@@@@..&amp;%**#+%+               .@..&amp;#                   +%+#&amp;*..#+++           
+     %%%%%#...@**&amp;.*%%%%%%%**.#.#                 $..@+                 %%%+<a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">CGIS</a>.*#+++           
+     .@@@@@@@@@@@@@@@@@@@@.+#%#%&amp;                 *#..@##                <a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">commons</a>...%+++           
+     .@@@@.@.**..**.......*+*##%++                   @.@.*.*            +%.<a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">geographic</a>+             
+     .@@@@@@@@@@@@@@@@@@@@.+#+#%.*                     +..#%#+        ..<a aria-label="CGIS (commons-geographic-image-search)" data-project="cgis" href="cgis-commons-geographic-image-search.html">image-search</a>+             
+     .@@@@@@@@@@@@@@@@@@@@.+#+#%                         .$.@@.#++%%+++%#%%%*@@...                
+      #..@<a aria-label="assorted video and audio" data-project="media" href="assorted-video-audio.html">assorted</a>&amp;*###+#+%#                           @....*+%&amp;++%*###%%%%%                  
+        ...<a aria-label="assorted video and audio" data-project="media" href="assorted-video-audio.html">video &amp; audio</a>%%.@.                             .&amp;*#++#%##**.&amp;%+#+                   
+          .*.....$@..@@@...*                                   ++++++++++%+++                     
+            .$.@.@@@@.**                                                                          </pre>
+  </main>
+  <script>
+    // --- Infinite image rail ---
+    (function () {
+      const scroller = document.querySelector('.work-scroll');
+      const track = document.querySelector('.work-track');
+
+      if (!scroller || !track) return;
+
+      // Keep only the first visible copy from the HTML.
+      // The script rebuilds the rail as: hidden copy / real copy / hidden copy.
+      const sourceImages = Array.from(track.querySelectorAll('img:not([aria-hidden="true"])'));
+
+      if (sourceImages.length === 0) return;
+
+      track.innerHTML = '';
+
+      function buildImageSet(hidden) {
+        const imageSet = document.createElement('div');
+        imageSet.className = 'work-set';
+
+        if (hidden) {
+          imageSet.setAttribute('aria-hidden', 'true');
+        }
+
+        sourceImages.forEach((image) => {
+          const clone = image.cloneNode(true);
+
+          if (hidden) {
+            clone.setAttribute('aria-hidden', 'true');
+          } else {
+            clone.removeAttribute('aria-hidden');
+          }
+
+          imageSet.appendChild(clone);
+        });
+
+        return imageSet;
+      }
+
+      const beforeSet = buildImageSet(true);
+      const mainSet = buildImageSet(false);
+      const afterSet = buildImageSet(true);
+
+      track.append(beforeSet, mainSet, afterSet);
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mobileLayout = window.matchMedia('(max-width: 900px)');
+
+      let setLength = 0;
+      let autoScrollPaused = false;
+      let previousFrameTime = null;
+      let isRepositioning = false;
+      let resumeTimer = null;
+
+      function isHorizontalLayout() {
+        return mobileLayout.matches;
+      }
+
+      function getTrackGap() {
+        const computedStyle = window.getComputedStyle(track);
+        const gapValue = isHorizontalLayout() ? computedStyle.columnGap : computedStyle.rowGap;
+        return parseFloat(gapValue || computedStyle.gap) || 0;
+      }
+
+      function getCurrentScrollPosition() {
+        return isHorizontalLayout() ? scroller.scrollLeft : scroller.scrollTop;
+      }
+
+      function setCurrentScrollPosition(value) {
+        if (isHorizontalLayout()) {
+          scroller.scrollLeft = value;
+        } else {
+          scroller.scrollTop = value;
+        }
+      }
+
+      function pauseAutoScrollTemporarily() {
+        autoScrollPaused = true;
+        clearTimeout(resumeTimer);
+
+        resumeTimer = setTimeout(() => {
+          autoScrollPaused = false;
+        }, 1200);
+      }
+
+      function pauseAutoScroll() {
+        autoScrollPaused = true;
+        clearTimeout(resumeTimer);
+      }
+
+      function resumeAutoScrollSoon() {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => {
+          autoScrollPaused = false;
+        }, 900);
+      }
+
+      function measureRail() {
+        const mainSetBounds = mainSet.getBoundingClientRect();
+        const mainSetLength = isHorizontalLayout() ? mainSetBounds.width : mainSetBounds.height;
+
+        setLength = mainSetLength + getTrackGap();
+
+        if (setLength <= 0) return;
+
+        isRepositioning = true;
+        setCurrentScrollPosition(setLength);
+
+        requestAnimationFrame(() => {
+          isRepositioning = false;
+        });
+      }
+
+      function wrapScrollPosition() {
+        if (!setLength || isRepositioning) return;
+
+        const currentPosition = getCurrentScrollPosition();
+
+        // Once scrolling reaches a duplicate set, jump back into the matching
+        // position inside the centre set. This makes both directions feel endless.
+        if (currentPosition < setLength * 0.5) {
+          setCurrentScrollPosition(currentPosition + setLength);
+        } else if (currentPosition > setLength * 1.5) {
+          setCurrentScrollPosition(currentPosition - setLength);
+        }
+      }
+
+      function animateRail(frameTime) {
+        if (previousFrameTime === null) {
+          previousFrameTime = frameTime;
+        }
+
+        const elapsedSeconds = (frameTime - previousFrameTime) / 1000;
+        previousFrameTime = frameTime;
+
+        if (!autoScrollPaused && !reducedMotion.matches && setLength > 0) {
+          const pixelsPerSecond = 18;
+          setCurrentScrollPosition(getCurrentScrollPosition() + pixelsPerSecond * elapsedSeconds);
+          wrapScrollPosition();
+        }
+
+        requestAnimationFrame(animateRail);
+      }
+
+      scroller.addEventListener('scroll', wrapScrollPosition, { passive: true });
+      scroller.addEventListener('wheel', pauseAutoScrollTemporarily, { passive: true });
+      scroller.addEventListener('touchstart', pauseAutoScroll, { passive: true });
+      scroller.addEventListener('touchend', resumeAutoScrollSoon, { passive: true });
+      scroller.addEventListener('pointerdown', pauseAutoScroll);
+      scroller.addEventListener('pointerup', resumeAutoScrollSoon);
+      scroller.addEventListener('pointercancel', resumeAutoScrollSoon);
+
+      scroller.addEventListener('mouseenter', pauseAutoScroll);
+      scroller.addEventListener('mouseleave', () => {
+        autoScrollPaused = false;
+        clearTimeout(resumeTimer);
+      });
+
+      scroller.addEventListener('focusin', pauseAutoScroll);
+      scroller.addEventListener('focusout', resumeAutoScrollSoon);
+
+      window.addEventListener('resize', measureRail);
+      mobileLayout.addEventListener('change', measureRail);
+
+      const imageLoadPromises = Array.from(track.querySelectorAll('img')).map((image) => {
+        if (image.complete) return Promise.resolve();
+
+        return new Promise((resolve) => {
+          image.addEventListener('load', resolve, { once: true });
+          image.addEventListener('error', resolve, { once: true });
+        });
+      });
+
+      Promise.all(imageLoadPromises).then(() => {
+        measureRail();
+        requestAnimationFrame(animateRail);
+      });
+    })();
+
+    // --- Project link group hover ---
+    const groupedAsciiLinks = document.querySelectorAll('.ascii-art a[data-project]');
+
+    groupedAsciiLinks.forEach((link) => {
+      const projectName = link.dataset.project;
+      const matchingLinks = document.querySelectorAll(`.ascii-art a[data-project="${projectName}"]`);
+
+      const setActiveState = (active) => {
+        matchingLinks.forEach((matchingLink) => {
+          matchingLink.classList.toggle('is-active', active);
+        });
+      };
+
+      link.addEventListener('mouseenter', () => setActiveState(true));
+      link.addEventListener('mouseleave', () => setActiveState(false));
+      link.addEventListener('focus', () => setActiveState(true));
+      link.addEventListener('blur', () => setActiveState(false));
+    });
+
+    // --- Character cycling on hover ---
+    (function () {
+      const pre = document.querySelector('.ascii-art');
+      if (!pre) return;
+
+      // Pool of candidate replacement characters — all reliably single-width in monospace fonts
+      const REPLACEMENTS = [
+        // Lowercase latin
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        // Uppercase latin
+        'I', 'J', 'K', 'L', 'M',
+        // Latin-1 / punctuation (all ASCII-width)
+        '±', '×', '÷', '°', '§', '†', '‡', '«', '»', '¡', '¿',
+        '¢', '£', '¥', '©', '®', '™', '¬',
+      ];
+
+      // Wrap each non-whitespace character in a span, storing both data-char and data-original
+      function wrapTextNode(textNode) {
+        const text = textNode.data;
+        if (!text) return;
+        const frag = document.createDocumentFragment();
+        for (const ch of text) {
+          if (ch === ' ' || ch === '\n') {
+            frag.appendChild(document.createTextNode(ch));
+          } else {
+            const span = document.createElement('span');
+            span.dataset.char = ch;
+            span.dataset.original = ch;
+            span.textContent = ch;
+            frag.appendChild(span);
+          }
+        }
+        textNode.parentNode.replaceChild(frag, textNode);
+      }
+
+      function walkAndWrap(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          wrapTextNode(node);
+          return;
+        }
+        Array.from(node.childNodes).forEach(walkAndWrap);
+      }
+
+      walkAndWrap(pre);
+
+      let hoveredOriginal = null;  // data-original of the currently hovered group
+      let cyclingInterval = null;
+      const revertTimers = {};     // originalChar → setTimeout id
+
+      function pickReplacement() {
+        const usedChars = new Set(
+          Array.from(pre.querySelectorAll('[data-char]')).map(el => el.dataset.char)
+        );
+        const available = REPLACEMENTS.filter(c => !usedChars.has(c));
+        if (available.length === 0) return null;
+        return available[Math.floor(Math.random() * available.length)];
+      }
+
+      function applyChar(originalChar, displayChar) {
+        const spans = pre.querySelectorAll(`[data-original="${CSS.escape(originalChar)}"]`);
+        spans.forEach(el => {
+          el.dataset.char = displayChar;
+          el.textContent = displayChar;
+        });
+        pre.querySelectorAll('.char-highlight').forEach(el => el.classList.remove('char-highlight'));
+        pre.querySelectorAll(`[data-char="${CSS.escape(displayChar)}"]`).forEach(el => el.classList.add('char-highlight'));
+      }
+
+      function startCycling(originalChar) {
+        // Cancel any pending revert for this group
+        clearTimeout(revertTimers[originalChar]);
+        delete revertTimers[originalChar];
+
+        function doSwap() {
+          const next = pickReplacement();
+          if (next) applyChar(originalChar, next);
+        }
+
+        doSwap(); // fire immediately
+        cyclingInterval = setInterval(doSwap, 80);
+      }
+
+      function stopCycling(originalChar) {
+        clearInterval(cyclingInterval);
+        cyclingInterval = null;
+
+        // Short delay, then do a few quick random swaps before snapping back to original
+        const REVERT_STEPS = 4;
+        const REVERT_INTERVAL = 60;
+        let step = 0;
+
+        revertTimers[originalChar] = setTimeout(() => {
+          const ticker = setInterval(() => {
+            step++;
+            if (step >= REVERT_STEPS) {
+              clearInterval(ticker);
+              // Snap to original
+              const spans = pre.querySelectorAll(`[data-original="${CSS.escape(originalChar)}"]`);
+              spans.forEach(el => {
+                el.dataset.char = el.dataset.original;
+                el.textContent = el.dataset.original;
+              });
+              delete revertTimers[originalChar];
+              if (hoveredOriginal === null) {
+                pre.querySelectorAll('.char-highlight').forEach(el => el.classList.remove('char-highlight'));
+              }
+            } else {
+              const next = pickReplacement();
+              if (next) applyChar(originalChar, next);
+            }
+          }, REVERT_INTERVAL);
+        }, 50);
+      }
+
+      pre.addEventListener('mouseover', (e) => {
+        const span = e.target.closest('[data-original]');
+        // Only cycle chars that are inside a link
+        const insideLink = span && span.closest('a');
+        const original = insideLink ? span.dataset.original : null;
+        if (original === hoveredOriginal) return;
+
+        // Stop cycling the previous group and schedule its revert
+        if (hoveredOriginal !== null) stopCycling(hoveredOriginal);
+
+        pre.querySelectorAll('.char-highlight').forEach(el => el.classList.remove('char-highlight'));
+        hoveredOriginal = original;
+
+        if (original) startCycling(original);
+      });
+
+      pre.addEventListener('mouseleave', () => {
+        if (hoveredOriginal !== null) stopCycling(hoveredOriginal);
+        hoveredOriginal = null;
+        pre.querySelectorAll('.char-highlight').forEach(el => el.classList.remove('char-highlight'));
+      });
+    })();
+  </script>
+</body>
+
+</html>
